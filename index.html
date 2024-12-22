@@ -2,27 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>liquitarded - DexScreener Embeds (Logo Color Theme with Emojis + Intro Modal)</title>
+  <title>Liquidated - DexScreener Embeds (Always 3 Charts in a Row)</title>
   <style>
-    /* ==========================
-       1) NEW PALETTE VARIABLES
-       ========================== */
     :root {
-      --saffron: #E5BD00ff;        
       --celestial-blue: #009BD9ff; 
-      --black: #000000ff;          
       --chili-red: #E61E06ff;      
-      --jonquil: #FDD001ff;        
-      --black-2: #010000ff;        
-      --celestial-blue-2: #009CDAff;
-      --chili-red-2: #E31D06ff;    
-      --cal-poly-green: #1E5217ff; 
       --kelly-green: #43B132ff;    
+      --jonquil: #FDD001ff;        
+      --black: #000000ff;          
     }
 
-    /* 
-      2) GLOBAL RESETS & BASE STYLES
-    */
     * {
       box-sizing: border-box;
     }
@@ -30,8 +19,6 @@
       margin: 0;
       padding: 0;
       font-family: "Trebuchet MS", Arial, sans-serif;
-
-      /* Diagonal stripes with new palette */
       background: repeating-linear-gradient(
         45deg,
         var(--celestial-blue),
@@ -46,7 +33,6 @@
       color: #fff;
     }
 
-    /* HEADER */
     header {
       background: linear-gradient(90deg, var(--chili-red), var(--celestial-blue));
       border-bottom: 4px solid var(--kelly-green);
@@ -78,7 +64,6 @@
       color: #fff;
     }
 
-    /* NAV */
     nav {
       margin-top: 1rem;
       display: flex;
@@ -104,7 +89,6 @@
       border-color: #fff;
     }
 
-    /* CONTAINER */
     .container {
       display: flex;
       flex-direction: row;
@@ -112,7 +96,6 @@
       gap: 1rem;
     }
 
-    /* SIDEBAR */
     .sidebar {
       flex: 1;
       min-width: 250px;
@@ -156,7 +139,6 @@
       font-weight: bold;
     }
 
-    /* NFT BOXES */
     .nfts {
       display: flex;
       gap: 0.5rem;
@@ -184,7 +166,6 @@
       border-color: #fff;
     }
 
-    /* MAIN CONTENT */
     .main-content {
       flex: 3;
       background: linear-gradient(135deg, var(--celestial-blue), var(--chili-red));
@@ -196,7 +177,6 @@
       overflow: hidden;
     }
 
-    /* GAME WRAPPER */
     .game-wrapper {
       border: 3px dashed #fff;
       margin-bottom: 2rem;
@@ -205,7 +185,6 @@
       border-radius: 6px;
     }
 
-    /* GAME STATUS with EMOJIS */
     .game-status {
       display: flex;
       justify-content: space-between;
@@ -253,7 +232,6 @@
       transform: scale(1.1);
     }
 
-    /* CHARTS TITLE */
     .charts-title {
       text-align: center;
       margin-top: 0;
@@ -263,25 +241,17 @@
       text-shadow: 2px 2px 4px #000;
     }
 
-    /* CHART WRAPPER (DexScreener) */
+    /* CRITICAL: Force a single row, horizontal scroll if needed */
     .charts-wrapper {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;   /* no wrapping */
       gap: 1rem;
-      justify-content: center;
+      overflow-x: auto;    /* horizontal scroll if not enough space */
     }
 
-    @media (max-width: 600px) {
-      /* On phones, stack them in a single column */
-      .charts-wrapper {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
+    /* Each chart has a fixed min-width to ensure it doesn't compress too small */
     .chart-box {
-      flex: 1;
-      min-width: 220px;
+      flex: 0 0 300px; /* each chart is at least 300px wide */
       border: 3px solid #fff;
       background: rgba(0,0,0,0.3);
       text-align: center;
@@ -289,6 +259,10 @@
       border-radius: 6px;
       color: #fff;
       position: relative;
+      /* Optional if you want to fix the height as well: 
+         height: 450px;
+         overflow: hidden;
+      */
     }
     .chart-box h3 {
       margin: 0.5rem 0;
@@ -296,11 +270,10 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* DexScreener EMBED */
     .dexscreener-embed {
       position: relative;
       width: 100%;
-      padding-bottom: 125%; /* Aspect ratio fallback */
+      padding-bottom: 125%;
       border: 2px dashed #fff;
       border-radius: 4px;
       margin-bottom: 0.5rem;
@@ -308,7 +281,6 @@
       background: var(--black);
     }
     @media (min-width: 1400px) {
-      /* On very large screens, we reduce the vertical space used */
       .dexscreener-embed {
         padding-bottom: 65%;
       }
@@ -323,7 +295,6 @@
       border-radius: 2px;
     }
 
-    /* BET INFO with EMOJIS */
     .bet-info {
       margin-top: 0.5rem;
       display: flex;
@@ -355,7 +326,6 @@
       color: var(--celestial-blue);
     }
 
-    /* WINNING/LOSING => EMOJIS + FLASH */
     .winning {
       animation: winningFlash 1s infinite alternate;
     }
@@ -371,29 +341,6 @@
       100% { box-shadow: 0 0 15px #f00; }
     }
 
-    /* NFT STAKE BOXES */
-    .nft-risk-container {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
-    .nft-risk-box {
-      width: 80px;
-      height: 80px;
-      background: #fff;
-      border: 3px solid #000;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #000;
-      text-align: center;
-      box-shadow: 0 0 5px #fff;
-    }
-
-    /* BOTTOM SECTION */
     .bottom-section {
       background: var(--celestial-blue);
       border-top: 5px double var(--chili-red);
@@ -419,9 +366,9 @@
 
     /* MODAL POP-UP */
     .modal {
-      display: block; /* Show by default on page load */
+      display: block; 
       position: fixed;
-      z-index: 9999; /* Ensure it's above other elements */
+      z-index: 9999; 
       left: 0;
       top: 0;
       width: 100%;
@@ -432,7 +379,7 @@
     .modal-content {
       background-color: #fff;
       color: #000;
-      margin: 10% auto; /* Center the modal */
+      margin: 10% auto;
       max-width: 500px;
       border-radius: 8px;
       padding: 2rem;
@@ -479,7 +426,7 @@
   <div id="infoModal" class="modal">
     <div class="modal-content">
       <button class="close-btn" id="closeModalX">✖</button>
-      <h2>⚡ Welcome to liquitarded ⚡</h2>
+      <h2>⚡ Welcome to Liquidated ⚡</h2>
       <p>
         🪙 This is a <strong>3-match prediction game</strong> where you wager on whether 
         certain crypto pairs will move ⬆️ or ⬇️. <br /><br />
@@ -590,7 +537,8 @@
           <p>NFT: #1</p>
         </div>
 
-        <div class="charts-wrapper" style="margin-top: 1rem;">
+        <!-- CHARTS in Single Row -->
+        <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
             <h3>⚔️ Match 1 (SOL/ETH) (2min)</h3>
@@ -661,7 +609,8 @@
           <p>NFT: #42</p>
         </div>
 
-        <div class="charts-wrapper" style="margin-top: 1rem;">
+        <!-- CHARTS in Single Row -->
+        <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
             <h3>⚔️ Match 1 (SOL/BTC) (2min left)</h3>
