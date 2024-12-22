@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Liquidated - DexScreener Embeds (Logo Color Theme with Emojis + Intro Modal)</title>
+  <title>liquitarded - DexScreener Embeds (Logo Color Theme with Emojis + Intro Modal)</title>
   <style>
     /* ==========================
        1) NEW PALETTE VARIABLES
@@ -263,13 +263,22 @@
       text-shadow: 2px 2px 4px #000;
     }
 
-    /* CHART WRAPPER */
+    /* CHART WRAPPER (DexScreener) */
     .charts-wrapper {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
     }
+
+    @media (max-width: 600px) {
+      /* On phones, stack them in a single column */
+      .charts-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
     .chart-box {
       flex: 1;
       min-width: 220px;
@@ -291,7 +300,7 @@
     .dexscreener-embed {
       position: relative;
       width: 100%;
-      padding-bottom: 125%;
+      padding-bottom: 125%; /* Aspect ratio fallback */
       border: 2px dashed #fff;
       border-radius: 4px;
       margin-bottom: 0.5rem;
@@ -299,6 +308,7 @@
       background: var(--black);
     }
     @media (min-width: 1400px) {
+      /* On very large screens, we reduce the vertical space used */
       .dexscreener-embed {
         padding-bottom: 65%;
       }
@@ -469,15 +479,16 @@
   <div id="infoModal" class="modal">
     <div class="modal-content">
       <button class="close-btn" id="closeModalX">✖</button>
-      <h2>⚡ Welcome to Liquidated ⚡</h2>
+      <h2>⚡ Welcome to liquitarded ⚡</h2>
       <p>
         🪙 This is a <strong>3-match prediction game</strong> where you wager on whether 
         certain crypto pairs will move ⬆️ or ⬇️. <br /><br />
         🏆 You can either <em>create a new game</em> or <em>join an existing one</em>. 
         Stake your NFT and if your predictions beat your opponent’s, you <strong>win</strong> 
         their NFT! <br /><br />
-        🚀 Watch the live charts update in real-time, and see if you’re <span style="color:green;">winning 🏆</span> 
-        or <span style="color:red;">losing 💔</span>. At the end of the match, final 
+        🚀 Watch the live charts update in real-time, and see if you’re 
+        <span style="color:green;">winning 🏆</span> or 
+        <span style="color:red;">losing 💔</span>. At the end of the match, final 
         results will show who has triumphed!
       </p>
       <p>
