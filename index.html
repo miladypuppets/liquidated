@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Liquitarded - Retro + Local Chart Images</title>
+  <title>Liquidated - Retro with Up/Down + Spot Open</title>
 
   <!-- Retro-ish Font (Press Start 2P) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -26,9 +26,7 @@
     body {
       margin: 0;
       padding: 0;
-      /* RETRO Font */
       font-family: "Press Start 2P", monospace, Arial, sans-serif;
-
       background: repeating-linear-gradient(
         45deg,
         var(--celestial-blue),
@@ -42,7 +40,7 @@
       );
       color: #fff;
       line-height: 1.4;
-      font-size: 12px; /* Press Start is large, so let's reduce global size */
+      font-size: 12px; /* Press Start is large, so let's reduce globally */
     }
 
     /* HEADER */
@@ -159,6 +157,26 @@
       font-size: 9px;
     }
 
+    .create-game-btn {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 9px;
+      font-weight: bold;
+      border: 2px solid #000;
+      border-radius: 4px;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .create-game-btn:hover {
+      background: var(--jonquil);
+      border-color: var(--celestial-blue);
+      color: var(--celestial-blue);
+      transform: scale(1.1);
+    }
+
     /* NFT SELECTION BOXES */
     .nfts {
       display: flex;
@@ -257,6 +275,13 @@
       color: var(--celestial-blue);
       transform: scale(1.1);
     }
+    .game-status button:disabled {
+      background: #ccc;
+      border-color: #999;
+      color: #666;
+      cursor: not-allowed;
+      transform: none; /* no scale on hover */
+    }
 
     /* CHART TITLES */
     .charts-title {
@@ -308,8 +333,8 @@
       display: block;
     }
 
-    /* BET INFO + PNL */
-    .bet-info {
+    /* WAGER INFO */
+    .wager-info {
       margin-top: 0.5rem;
       display: flex;
       flex-direction: column;
@@ -318,7 +343,7 @@
       text-shadow: 1px 1px 2px #000;
       font-size: 9px;
     }
-    .bet-line {
+    .wager-line {
       display: flex;
       align-items: center;
       gap: 0.3rem;
@@ -326,11 +351,11 @@
       border-radius: 4px;
       border: 2px solid #fff;
     }
-    .creator-bet {
+    .creator-nft {
       background: var(--kelly-green);
-      color: #fff876;
+      color: #000; /* or #fff876 if you prefer */
     }
-    .you-bet {
+    .challenger-nft {
       background: var(--chili-red);
       color: #fff;
     }
@@ -448,22 +473,19 @@
   <div id="infoModal" class="modal">
     <div class="modal-content">
       <button class="close-btn" id="closeModalX">✖</button>
-      <h2>⚡ Welcome to Liquitarded ⚡</h2>
+      <h2>⚡ Welcome to Liquidated ⚡</h2>
       <p>
-        🪙 This is a <strong>3-match prediction game</strong> where you wager on whether 
-        certain crypto pairs will move 🔼 or 🔽.<br /><br />
-        🏆 You can either <em>create a new game</em> or <em>join</em> an existing one.  
-        Stake your NFT and if your predictions beat your opponent’s, you <strong>win</strong> 
-        their NFT!<br /><br />
-        🚀 Once someone joins your created game, it will begin <strong>15 minutes</strong> later.  
-        If nobody joins your game within <strong>45 minutes</strong>, the game closes.  
+        🪙 This is a <strong>3-match NFT wager game</strong> where you pick if pairs move 🔼 or 🔽.
         <br /><br />
-        🏆 Watch the live charts and see if you’re winning or losing. At the end, final 
-        results show who triumphs!
+        🏆 Create or join a game. Stake your NFT! If your predictions beat your opponent’s, you <strong>win</strong> 
+        their NFT!
+        <br /><br />
+        🚀 Once joined, the game starts in <strong>15 minutes</strong>. If no join after <strong>45 minutes</strong>, it closes.
       </p>
       <p>
-        🔑 Don’t forget to connect your wallet and confirm bets. 
-        May the best crypto gambler win!
+        🏆 Track the charts & see who triumphs!  
+        <br /><br />
+        🔑 Connect your wallet & confirm. Good luck!
       </p>
       <button id="understandBtn">I Understand ✅</button>
     </div>
@@ -474,7 +496,7 @@
   <header>
     <div class="logo-wrapper">
       <img src="logo.png" alt="Your Logo" />
-      <h1></h1>
+      <h1>Liquidated</h1>
     </div>
     <nav>
       <a href="#">New</a>
@@ -495,42 +517,47 @@
 
       <div class="section">
         <h2>Create</h2>
+        <!-- Pair & direction selection for each match -->
         <div class="pair-setup">
           <label>Match 1:</label>
           <select name="pair1">
-            <option>SOL/BTC</option>
             <option>SOL/ETH</option>
+            <option>SOL/BTC</option>
             <option>ETH/BTC</option>
             <option>BNB/ETH</option>
           </select>
-          <label>Bet:</label>
-          <input type="radio" name="bet1" value="up">🔼
-          <input type="radio" name="bet1" value="down">🔽
+          <label>Direction:</label>
+          <input type="radio" name="dir1" value="up">🔼
+          <input type="radio" name="dir1" value="down">🔽
         </div>
+
         <div class="pair-setup">
           <label>Match 2:</label>
           <select name="pair2">
-            <option>SOL/BTC</option>
             <option>SOL/ETH</option>
+            <option>SOL/BTC</option>
             <option>ETH/BTC</option>
             <option>BNB/ETH</option>
           </select>
-          <label>Bet:</label>
-          <input type="radio" name="bet2" value="up">🔼
-          <input type="radio" name="bet2" value="down">🔽
+          <label>Direction:</label>
+          <input type="radio" name="dir2" value="up">🔼
+          <input type="radio" name="dir2" value="down">🔽
         </div>
+
         <div class="pair-setup">
           <label>Match 3:</label>
           <select name="pair3">
-            <option>SOL/BTC</option>
             <option>SOL/ETH</option>
+            <option>SOL/BTC</option>
             <option>ETH/BTC</option>
             <option>BNB/ETH</option>
           </select>
-          <label>Bet:</label>
-          <input type="radio" name="bet3" value="up">🔼
-          <input type="radio" name="bet3" value="down">🔽
+          <label>Direction:</label>
+          <input type="radio" name="dir3" value="up">🔼
+          <input type="radio" name="dir3" value="down">🔽
         </div>
+
+        <button class="create-game-btn">Start Game</button>
       </div>
 
       <div class="section">
@@ -546,59 +573,74 @@
     <section class="main-content">
       <!-- GAME WRAPPER #1 -->
       <div class="game-wrapper">
+        <!-- "Open" status => "Start" button is enabled -->
         <div class="game-status open">
           <p>🟢 Open</p>
           <button>Start</button>
         </div>
         <h2 class="charts-title">Game #1</h2>
 
-        <div class="user-info-card" style="
-          border:2px solid #fff; 
-          padding:0.5rem; 
-          border-radius:6px; 
-          margin-bottom:1rem;
-          font-size:10px;
-        ">
-          <h3 style="margin:0; font-size:10px;">👤 Creator</h3>
-          <p style="margin:0; font-size:9px;">0xABC123 | NFT #1</p>
+        <div style="display:flex; gap:1rem; margin-bottom:0.75rem;">
+          <!-- Creator section -->
+          <div style="flex:1; border:2px solid #fff; border-radius:6px; padding:0.5rem;">
+            <h3 style="font-size:10px; margin:0 0 0.3rem 0;">👤 Creator</h3>
+            <p style="font-size:9px; margin:0 0 0.5rem 0;">0xABC123</p>
+            <div style="
+              width:50px; height:50px; background:#fff; border:3px solid #43B132; 
+              border-radius:6px; display:flex; align-items:center; justify-content:center; 
+              font-size:9px; color:#000; font-weight:bold;
+            ">
+              NFT #1
+            </div>
+          </div>
+          <!-- Challenger: if no one joined => "Spot Open" -->
+          <div style="flex:1; border:2px solid #fff; border-radius:6px; padding:0.5rem;">
+            <h3 style="font-size:10px; margin:0 0 0.3rem 0;">⚔️ Challenger</h3>
+            <p style="font-size:9px; margin:0 0 0.5rem 0;">Spot Open</p>
+            <div style="
+              width:50px; height:50px; background:#fff; border:3px solid #E61E06; 
+              border-radius:6px; display:flex; align-items:center; justify-content:center; 
+              font-size:9px; color:#000; font-weight:bold;
+            ">
+              [None]
+            </div>
+          </div>
         </div>
 
-        <!-- CHARTS in Single Row -->
         <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
-            <h3>Match 1</h3>
-            <!-- Instead of DexScreener <iframe>, we show a local image "chartex.png" -->
+            <h3>Match 1 (Pair: SOL/ETH)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet">Creator (🔼)</div>
-              <div class="bet-line you-bet">You (🔽)</div>
+            <div class="wager-info">
+              <div class="wager-line creator-nft">Creator  #1</div>
+              <div class="wager-line challenger-nft">Challenger  ???</div>
             </div>
           </div>
 
           <!-- Chart 2 -->
           <div class="chart-box">
-            <h3>Match 2</h3>
+            <h3>Match 2 (Pair: SOL/BTC)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet">Creator (🔽)</div>
-              <div class="bet-line you-bet">You (🔼)</div>
+            <div class="wager-info">
+              <div class="wager-line creator-nft">Creator  #1</div>
+              <div class="wager-line challenger-nft">Challenger  ???</div>
             </div>
           </div>
 
           <!-- Chart 3 -->
           <div class="chart-box">
-            <h3>Match 3</h3>
+            <h3>Match 3 (Pair: BNB/ETH)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet">Creator (🔼)</div>
-              <div class="bet-line you-bet">You (🔽)</div>
+            <div class="wager-info">
+              <div class="wager-line creator-nft">Creator  #1</div>
+              <div class="wager-line challenger-nft">Challenger  ???</div>
             </div>
           </div>
         </div>
@@ -606,68 +648,85 @@
 
       <!-- GAME WRAPPER #2 (Active) -->
       <div class="game-wrapper">
+        <!-- "Active" => "Start" is disabled (or you could hide it) -->
         <div class="game-status active">
           <p>🔥 Active</p>
-          <button>Start</button>
+          <button disabled>Start</button>
         </div>
         <h2 class="charts-title">Game #2</h2>
 
-        <div class="user-info-card" style="
-          border:2px solid #fff; 
-          padding:0.5rem; 
-          border-radius:6px; 
-          margin-bottom:1rem;
-          font-size:10px;
-        ">
-          <h3 style="margin:0; font-size:10px;">👤 Creator</h3>
-          <p style="margin:0; font-size:9px;">0xDEF999 | NFT #42</p>
+        <div style="display:flex; gap:1rem; margin-bottom:0.75rem;">
+          <!-- Creator section -->
+          <div style="flex:1; border:2px solid #fff; border-radius:6px; padding:0.5rem;">
+            <h3 style="font-size:10px; margin:0 0 0.3rem 0;">👤 Creator</h3>
+            <p style="font-size:9px; margin:0 0 0.5rem 0;">0xDEF999</p>
+            <div style="
+              width:50px; height:50px; background:#fff; border:3px solid #43B132; 
+              border-radius:6px; display:flex; align-items:center; justify-content:center; 
+              font-size:9px; color:#000; font-weight:bold;
+            ">
+              NFT #42
+            </div>
+          </div>
+          <!-- Suppose the Challenger joined for #2 -->
+          <div style="flex:1; border:2px solid #fff; border-radius:6px; padding:0.5rem;">
+            <h3 style="font-size:10px; margin:0 0 0.3rem 0;">⚔️ Challenger</h3>
+            <p style="font-size:9px; margin:0 0 0.5rem 0;">0x???</p>
+            <div style="
+              width:50px; height:50px; background:#fff; border:3px solid #E61E06; 
+              border-radius:6px; display:flex; align-items:center; justify-content:center; 
+              font-size:9px; color:#000; font-weight:bold;
+            ">
+              NFT #??
+            </div>
+          </div>
         </div>
 
         <div class="charts-wrapper">
-          <!-- Chart 1 -->
+          <!-- Chart 1 with example outcome -->
           <div class="chart-box">
-            <h3>Match 1</h3>
+            <h3>Match 1 (Pair: ETH/BTC)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet winning">
-                Creator (🔼) 🏆 (+5%)
+            <div class="wager-info">
+              <div class="wager-line creator-nft winning">
+                Creator  #42 🏆 (+5%)
               </div>
-              <div class="bet-line you-bet losing">
-                You (🔽) 💔 (–2%)
+              <div class="wager-line challenger-nft losing">
+                Challenger  #?? 💔 (–2%)
               </div>
             </div>
           </div>
 
           <!-- Chart 2 -->
           <div class="chart-box">
-            <h3>Match 2</h3>
+            <h3>Match 2 (Pair: SOL/ETH)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet losing">
-                Creator (🔽) 💔 (–3%)
+            <div class="wager-info">
+              <div class="wager-line creator-nft losing">
+                Creator  #42 💔 (–3%)
               </div>
-              <div class="bet-line you-bet winning">
-                You (🔼) 🏆 (+1%)
+              <div class="wager-line challenger-nft winning">
+                Challenger  #?? 🏆 (+1%)
               </div>
             </div>
           </div>
 
           <!-- Chart 3 -->
           <div class="chart-box">
-            <h3>Match 3</h3>
+            <h3>Match 3 (Pair: BNB/ETH)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet losing">
-                Creator (🔼) 💔 (–4%)
+            <div class="wager-info">
+              <div class="wager-line creator-nft losing">
+                Creator  #42 💔 (–4%)
               </div>
-              <div class="bet-line you-bet winning">
-                You (🔽) 🏆 (+8%)
+              <div class="wager-line challenger-nft winning">
+                Challenger  #?? 🏆 (+8%)
               </div>
             </div>
           </div>
@@ -678,72 +737,72 @@
       <div class="game-wrapper">
         <div class="game-status open">
           <p>⏳ About to Begin in <span class="timer" id="countdownTimer">15:00</span></p>
-          <button disabled>Waiting...</button>
+          <button disabled>Start</button>
         </div>
         <h2 class="charts-title">Game #3 (Scheduled)</h2>
 
-        <div class="user-info-card" style="
-          border:2px solid #fff; 
-          padding:0.5rem; 
-          border-radius:6px; 
-          margin-bottom:1rem;
-          font-size:10px;
-        ">
-          <h3 style="margin:0; font-size:10px;">👤 Creator</h3>
-          <p style="margin:0; font-size:9px;">0xXYZ999 | NFT #99</p>
+        <div style="display:flex; gap:1rem; margin-bottom:0.75rem;">
+          <!-- Creator section -->
+          <div style="flex:1; border:2px solid #fff; border-radius:6px; padding:0.5rem;">
+            <h3 style="font-size:10px; margin:0 0 0.3rem 0;">👤 Creator</h3>
+            <p style="font-size:9px; margin:0 0 0.5rem 0;">0xXYZ999</p>
+            <div style="
+              width:50px; height:50px; background:#fff; border:3px solid #43B132; 
+              border-radius:6px; display:flex; align-items:center; justify-content:center; 
+              font-size:9px; color:#000; font-weight:bold;
+            ">
+              NFT #99
+            </div>
+          </div>
+          <!-- Challenger: no one joined => "Spot Open" -->
+          <div style="flex:1; border:2px solid #fff; border-radius:6px; padding:0.5rem;">
+            <h3 style="font-size:10px; margin:0 0 0.3rem 0;">⚔️ Challenger</h3>
+            <p style="font-size:9px; margin:0 0 0.5rem 0;">Spot Open</p>
+            <div style="
+              width:50px; height:50px; background:#fff; border:3px solid #E61E06; 
+              border-radius:6px; display:flex; align-items:center; justify-content:center; 
+              font-size:9px; color:#000; font-weight:bold;
+            ">
+              [None]
+            </div>
+          </div>
         </div>
 
         <div class="charts-wrapper">
-          <!-- Chart 1, now just an example image "chartex.png" -->
           <div class="chart-box">
-            <h3>Match 1</h3>
+            <h3>Match 1 (Pair: ETH/BTC)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet">
-                Creator (🔼)
-              </div>
-              <div class="bet-line you-bet">
-                You (🔽)
-              </div>
+            <div class="wager-info">
+              <div class="wager-line creator-nft">Creator  #99</div>
+              <div class="wager-line challenger-nft">Challenger  ???</div>
             </div>
           </div>
 
-          <!-- Chart 2 -->
           <div class="chart-box">
-            <h3>Match 2</h3>
+            <h3>Match 2 (Pair: SOL/BTC)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet">
-                Creator (🔽)
-              </div>
-              <div class="bet-line you-bet">
-                You (🔼)
-              </div>
+            <div class="wager-info">
+              <div class="wager-line creator-nft">Creator  #99</div>
+              <div class="wager-line challenger-nft">Challenger  ???</div>
             </div>
           </div>
 
-          <!-- Chart 3 -->
           <div class="chart-box">
-            <h3>Match 3</h3>
+            <h3>Match 3 (Pair: BNB/ETH)</h3>
             <div class="chart-image">
               <img src="chartex.png" alt="Chart Example" />
             </div>
-            <div class="bet-info">
-              <div class="bet-line creator-bet">
-                Creator (🔼)
-              </div>
-              <div class="bet-line you-bet">
-                You (🔽)
-              </div>
+            <div class="wager-info">
+              <div class="wager-line creator-nft">Creator  #99</div>
+              <div class="wager-line challenger-nft">Challenger  ???</div>
             </div>
           </div>
         </div>
       </div>
-
     </section>
   </div>
 
@@ -754,9 +813,7 @@
 
   <!-- JAVASCRIPT FOR MODAL & COUNTDOWN -->
   <script>
-    // =======================
     // 1) MODAL LOGIC
-    // =======================
     const infoModal = document.getElementById("infoModal");
     const closeModalX = document.getElementById("closeModalX");
     const understandBtn = document.getElementById("understandBtn");
@@ -768,9 +825,7 @@
       infoModal.style.display = "none";
     });
 
-    // =======================
     // 2) COUNTDOWN LOGIC
-    // =======================
     const countdownTimer = document.getElementById("countdownTimer");
     let remainingSeconds = 15 * 60; // 15 minutes in seconds
 
@@ -789,9 +844,8 @@
       }
     }
 
-    // Start the countdown
     const timerInterval = setInterval(updateTimer, 1000);
-    updateTimer(); // Show 15:00 immediately on load
+    updateTimer(); // Show "15:00" initially
   </script>
 </body>
 </html>
