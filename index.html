@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Liquidated - DexScreener Embeds (Logo Color Theme with Emojis + Intro Modal)</title>
+  <style>
+    /* ==========================
+       1) NEW PALETTE VARIABLES
+       ========================== */
+    :root {
+      --saffron: #E5BD00ff;        
+      --celestial-blue: #009BD9ff; 
+      --black: #000000ff;          
+      --chili-red: #E61E06ff;      
+      --jonquil: #FDD001ff;        
+      --black-2: #010000ff;        
+      --celestial-blue-2: #009CDAff;
+      --chili-red-2: #E31D06ff;    
+      --cal-poly-green: #1E5217ff; 
+      --kelly-green: #43B132ff;    
+    }
+
+    /* 
+      2) GLOBAL RESETS & BASE STYLES
+    */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+
+      /* Diagonal stripes with new palette */
+      background: repeating-linear-gradient(
+        45deg,
+        var(--celestial-blue),
+        var(--celestial-blue) 20px,
+        var(--chili-red) 20px,
+        var(--chili-red) 40px,
+        var(--kelly-green) 40px,
+        var(--kelly-green) 60px,
+        var(--jonquil) 60px,
+        var(--jonquil) 80px
+      );
+      color: #fff;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, var(--chili-red), var(--celestial-blue));
+      border-bottom: 4px solid var(--kelly-green);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 0 10px var(--jonquil);
+      position: relative;
+    }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .logo-wrapper img {
+      max-height: 60px;
+      border: 3px solid #fff;
+      border-radius: 8px;
+      background: var(--black);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    }
+    .logo-wrapper h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 2px #000;
+      color: #fff;
+    }
+
+    /* NAV */
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      color: var(--black);
+      background: var(--jonquil);
+      border: 2px solid #fff;
+      border-radius: 4px;
+      transition: 0.3s;
+      text-shadow: 1px 1px 2px #fff;
+    }
+    nav a:hover {
+      background: var(--kelly-green);
+      color: #fff;
+      transform: scale(1.1);
+      border-color: #fff;
+    }
+
+    /* CONTAINER */
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      flex: 1;
+      min-width: 250px;
+      background: linear-gradient(180deg, var(--jonquil), var(--kelly-green));
+      border: 4px solid #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 12px var(--chili-red);
+      padding: 1rem;
+      position: relative;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+      margin-bottom: 0.5rem;
+    }
+    .sidebar .section {
+      margin-bottom: 1.5rem;
+    }
+    .sidebar label {
+      display: block;
+      margin: 0.5rem 0 0.25rem;
+      font-weight: bold;
+      color: #000;
+      background: #fff;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+    select, input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .pair-setup {
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,0.4);
+      border: 3px dashed #fff;
+      border-radius: 6px;
+      padding: 0.5rem;
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* NFT BOXES */
+    .nfts {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .nft-box {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 3px solid var(--chili-red);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .nft-box:hover {
+      background: var(--celestial-blue);
+      color: #fff;
+      transform: scale(1.1);
+      border-color: #fff;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      flex: 3;
+      background: linear-gradient(135deg, var(--celestial-blue), var(--chili-red));
+      border: 4px solid #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 0 12px var(--jonquil);
+      overflow: hidden;
+    }
+
+    /* GAME WRAPPER */
+    .game-wrapper {
+      border: 3px dashed #fff;
+      margin-bottom: 2rem;
+      background: rgba(255,255,255,0.2);
+      padding: 1rem;
+      border-radius: 6px;
+    }
+
+    /* GAME STATUS with EMOJIS */
+    .game-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px solid #fff;
+      font-weight: bold;
+      border-radius: 6px;
+      color: #000;
+      text-shadow: 1px 1px 2px #fff;
+      background: var(--jonquil); 
+      box-shadow: 0 0 10px #fff;
+    }
+    .game-status.open {
+      background: var(--kelly-green);
+      animation: openBlink 1.2s infinite alternate;
+    }
+    @keyframes openBlink {
+      0% { box-shadow: 0 0 5px #fff; }
+      100% { box-shadow: 0 0 15px #fff; }
+    }
+    .game-status.active {
+      background: var(--chili-red);
+      animation: activeBlink 1.2s infinite alternate;
+    }
+    @keyframes activeBlink {
+      0% { box-shadow: 0 0 5px #fff; }
+      100% { box-shadow: 0 0 15px #fff; }
+    }
+    .game-status button {
+      padding: 0.5rem 1rem;
+      border: 2px solid #000;
+      cursor: pointer;
+      background: #fff;
+      color: #000;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .game-status button:hover {
+      background: var(--jonquil);
+      border-color: var(--celestial-blue);
+      color: var(--celestial-blue);
+      transform: scale(1.1);
+    }
+
+    /* CHARTS TITLE */
+    .charts-title {
+      text-align: center;
+      margin-top: 0;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    /* CHART WRAPPER */
+    .charts-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .chart-box {
+      flex: 1;
+      min-width: 220px;
+      border: 3px solid #fff;
+      background: rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 0.5rem;
+      border-radius: 6px;
+      color: #fff;
+      position: relative;
+    }
+    .chart-box h3 {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    /* DexScreener EMBED */
+    .dexscreener-embed {
+      position: relative;
+      width: 100%;
+      padding-bottom: 125%;
+      border: 2px dashed #fff;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      box-shadow: inset 0 0 4px #fff;
+      background: var(--black);
+    }
+    @media (min-width: 1400px) {
+      .dexscreener-embed {
+        padding-bottom: 65%;
+      }
+    }
+    .dexscreener-embed iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: 0;
+      border-radius: 2px;
+    }
+
+    /* BET INFO with EMOJIS */
+    .bet-info {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+    }
+    .bet-line {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem;
+      border-radius: 4px;
+      border: 2px solid #fff;
+    }
+    .creator-bet {
+      background: var(--kelly-green);
+      color: #000;
+    }
+    .you-bet {
+      background: var(--chili-red);
+      color: #fff;
+    }
+    .arrow.up {
+      color: var(--jonquil);
+    }
+    .arrow.down {
+      color: var(--celestial-blue);
+    }
+
+    /* WINNING/LOSING => EMOJIS + FLASH */
+    .winning {
+      animation: winningFlash 1s infinite alternate;
+    }
+    @keyframes winningFlash {
+      0% { box-shadow: 0 0 5px #0f0; }
+      100% { box-shadow: 0 0 15px #0f0; }
+    }
+    .losing {
+      animation: losingFlash 1s infinite alternate;
+    }
+    @keyframes losingFlash {
+      0% { box-shadow: 0 0 5px #f00; }
+      100% { box-shadow: 0 0 15px #f00; }
+    }
+
+    /* NFT STAKE BOXES */
+    .nft-risk-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .nft-risk-box {
+      width: 80px;
+      height: 80px;
+      background: #fff;
+      border: 3px solid #000;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+      text-align: center;
+      box-shadow: 0 0 5px #fff;
+    }
+
+    /* BOTTOM SECTION */
+    .bottom-section {
+      background: var(--celestial-blue);
+      border-top: 5px double var(--chili-red);
+      padding: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 -3px 8px rgba(0,0,0,0.4);
+    }
+    .bottom-section h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: var(--jonquil);
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px #000;
+    }
+    .bottom-section p {
+      font-size: 1rem;
+      color: #fff;
+      margin: 0;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    /* MODAL POP-UP */
+    .modal {
+      display: block; /* Show by default on page load */
+      position: fixed;
+      z-index: 9999; /* Ensure it's above other elements */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      background-color: #fff;
+      color: #000;
+      margin: 10% auto; /* Center the modal */
+      max-width: 500px;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 10px #000;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #000;
+      font-weight: bold;
+    }
+    .close-btn:hover {
+      color: var(--chili-red);
+    }
+    #understandBtn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--chili-red);
+      background: var(--kelly-green);
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #understandBtn:hover {
+      background: var(--jonquil);
+      border-color: var(--celestial-blue);
+      color: var(--celestial-blue);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MODAL POPUP -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModalX">✖</button>
+      <h2>⚡ Welcome to Liquidated ⚡</h2>
+      <p>
+        🪙 This is a <strong>3-match prediction game</strong> where you wager on whether 
+        certain crypto pairs will move ⬆️ or ⬇️. <br /><br />
+        🏆 You can either <em>create a new game</em> or <em>join an existing one</em>. 
+        Stake your NFT and if your predictions beat your opponent’s, you <strong>win</strong> 
+        their NFT! <br /><br />
+        🚀 Watch the live charts update in real-time, and see if you’re <span style="color:green;">winning 🏆</span> 
+        or <span style="color:red;">losing 💔</span>. At the end of the match, final 
+        results will show who has triumphed!
+      </p>
+      <p>
+        🔑 Don’t forget to connect your wallet and confirm your bets. 
+        May the best crypto gambler win! 
+      </p>
+      <button id="understandBtn">I Understand ✅</button>
+    </div>
+  </div>
+  <!-- END MODAL POPUP -->
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-wrapper">
+      <img src="logo.png" alt="Your Logo" />
+      <h1></h1>
+    </div>
+    <nav>
+      <a href="#">New</a>
+      <a href="#">Find</a>
+      <a href="#">Leader</a>
+      <a href="#">FAQ</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="section">
+        <h2>Player / Wallet</h2>
+        <label>Your Address:</label>
+        <div>0xABC123...</div>
+      </div>
+
+      <div class="section">
+        <h2>⚔️ Create Game ⚔️</h2>
+        <div class="pair-setup">
+          <label>Match 1 - Pair Selection:</label>
+          <select name="pair1">
+            <option>SOL/BTC</option>
+            <option>SOL/ETH</option>
+            <option>ETH/BTC</option>
+            <option>BNB/ETH</option>
+          </select>
+          <label>Bet:</label>
+          <input type="radio" name="bet1" value="up">⬆️
+          <input type="radio" name="bet1" value="down">⬇️
+        </div>
+        <div class="pair-setup">
+          <label>Match 2 - Pair Selection:</label>
+          <select name="pair2">
+            <option>SOL/BTC</option>
+            <option>SOL/ETH</option>
+            <option>ETH/BTC</option>
+            <option>BNB/ETH</option>
+          </select>
+          <label>Bet:</label>
+          <input type="radio" name="bet2" value="up">⬆️
+          <input type="radio" name="bet2" value="down">⬇️
+        </div>
+        <div class="pair-setup">
+          <label>Match 3 - Pair Selection:</label>
+          <select name="pair3">
+            <option>SOL/BTC</option>
+            <option>SOL/ETH</option>
+            <option>ETH/BTC</option>
+            <option>BNB/ETH</option>
+          </select>
+          <label>Bet:</label>
+          <input type="radio" name="bet3" value="up">⬆️
+          <input type="radio" name="bet3" value="down">⬇️
+        </div>
+        <label>Time Frames (auto):</label>
+        <div>2min, 5min, 10min</div>
+      </div>
+
+      <div class="section">
+        <h2>🎨 NFT at Risk</h2>
+        <label>Select Your NFT:</label>
+        <div class="nfts">
+          <div class="nft-box">NFT #1</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="main-content">
+      <!-- GAME WRAPPER #1 -->
+      <div class="game-wrapper">
+        <div class="game-status open">
+          <p>🟢 OPEN</p>
+          <button>▶️ Start</button>
+        </div>
+        <h2 class="charts-title">3-Match Game #1</h2>
+
+        <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
+          <h3>👤 Creator Info</h3>
+          <p>Address: 0xABC123</p>
+          <p>NFT: #1</p>
+        </div>
+
+        <div class="charts-wrapper" style="margin-top: 1rem;">
+          <!-- Chart 1 -->
+          <div class="chart-box">
+            <h3>⚔️ Match 1 (SOL/ETH) (2min)</h3>
+            <div class="dexscreener-embed">
+              <iframe
+                src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
+              ></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet">
+                <span>Creator (⬆️)</span>
+              </div>
+              <div class="bet-line you-bet">
+                <span>You (⬇️)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 2 -->
+          <div class="chart-box">
+            <h3>⚔️ Match 2 (ETH/BTC) (5min)</h3>
+            <div class="dexscreener-embed">
+              <iframe
+                src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
+              ></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet">
+                <span>Creator (⬇️)</span>
+              </div>
+              <div class="bet-line you-bet">
+                <span>You (⬆️)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 3 -->
+          <div class="chart-box">
+            <h3>⚔️ Match 3 (BNB/ETH) (10min)</h3>
+            <div class="dexscreener-embed">
+              <iframe
+                src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
+              ></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet">
+                <span>Creator (⬆️)</span>
+              </div>
+              <div class="bet-line you-bet">
+                <span>You (⬇️)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME WRAPPER #2 -->
+      <div class="game-wrapper">
+        <div class="game-status active">
+          <p>🔥 ACTIVE</p>
+          <button>▶️ Start</button>
+        </div>
+        <h2 class="charts-title">3-Match Game #2</h2>
+
+        <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
+          <h3>👤 Creator Info</h3>
+          <p>Address: 0xDEF999</p>
+          <p>NFT: #42</p>
+        </div>
+
+        <div class="charts-wrapper" style="margin-top: 1rem;">
+          <!-- Chart 1 -->
+          <div class="chart-box">
+            <h3>⚔️ Match 1 (SOL/BTC) (2min left)</h3>
+            <div class="dexscreener-embed">
+              <iframe
+                src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
+              ></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet winning">
+                <span>Creator (⬆️) 🏆</span>
+              </div>
+              <div class="bet-line you-bet losing">
+                <span>You (⬇️) 💔</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 2 -->
+          <div class="chart-box">
+            <h3>⚔️ Match 2 (SOL/ETH) (5min left)</h3>
+            <div class="dexscreener-embed">
+              <iframe
+                src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
+              ></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet losing">
+                <span>Creator (⬇️) 💔</span>
+              </div>
+              <div class="bet-line you-bet winning">
+                <span>You (⬆️) 🏆</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 3 -->
+          <div class="chart-box">
+            <h3>⚔️ Match 3 (ETH/BTC) (10min left)</h3>
+            <div class="dexscreener-embed">
+              <iframe
+                src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
+              ></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet losing">
+                <span>Creator (⬆️) 💔</span>
+              </div>
+              <div class="bet-line you-bet winning">
+                <span>You (⬇️) 🏆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <div class="bottom-section">
+    <h2>📝 Match Log / Final Results</h2>
+    <p>📡 Watch real-time or final outcome appear here.</p>
+  </div>
+
+  <!-- JAVASCRIPT FOR MODAL -->
+  <script>
+    const infoModal = document.getElementById("infoModal");
+    const closeModalX = document.getElementById("closeModalX");
+    const understandBtn = document.getElementById("understandBtn");
+
+    // Click [X] or [I Understand] => close the modal
+    closeModalX.addEventListener("click", () => {
+      infoModal.style.display = "none";
+    });
+    understandBtn.addEventListener("click", () => {
+      infoModal.style.display = "none";
+    });
+  </script>
+</body>
+</html>
