@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Liquidated - DexScreener Embeds (Always 3 Charts in a Row)</title>
+  <title>Liquidated - Retro + Full Info</title>
+
+  <!-- Retro-ish Font (Press Start 2P) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
       --celestial-blue: #009BD9ff; 
@@ -18,7 +26,9 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: "Trebuchet MS", Arial, sans-serif;
+      /* RETRO Font */
+      font-family: "Press Start 2P", monospace, Arial, sans-serif;
+
       background: repeating-linear-gradient(
         45deg,
         var(--celestial-blue),
@@ -31,6 +41,8 @@
         var(--jonquil) 80px
       );
       color: #fff;
+      line-height: 1.4;
+      font-size: 12px; /* Press Start is large, so let's reduce global size */
     }
 
     /* HEADER */
@@ -49,7 +61,7 @@
       gap: 1rem;
     }
     .logo-wrapper img {
-      max-height: 60px;
+      max-height: 50px;
       border: 3px solid #fff;
       border-radius: 8px;
       background: var(--black);
@@ -57,7 +69,7 @@
     }
     .logo-wrapper h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 14px;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 2px;
@@ -70,12 +82,12 @@
       margin-top: 1rem;
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
     }
     nav a {
       text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 10px;
       padding: 0.5rem 1rem;
       color: var(--black);
       background: var(--jonquil);
@@ -102,7 +114,7 @@
     /* SIDEBAR */
     .sidebar {
       flex: 1;
-      min-width: 250px;
+      min-width: 200px;
       background: linear-gradient(180deg, var(--jonquil), var(--kelly-green));
       border: 4px solid #fff;
       border-radius: 8px;
@@ -112,7 +124,7 @@
     }
     .sidebar h2 {
       margin-top: 0;
-      font-size: 1.2rem;
+      font-size: 10px;
       font-weight: bold;
       color: #fff;
       text-shadow: 1px 1px 2px #000;
@@ -125,13 +137,16 @@
       display: block;
       margin: 0.5rem 0 0.25rem;
       font-weight: bold;
+      font-size: 9px;
       color: #000;
       background: #fff;
       padding: 0.2rem 0.4rem;
       border-radius: 4px;
     }
-    select, input[type="radio"] {
-      margin-right: 0.5rem;
+    select,
+    input[type="radio"] {
+      margin-right: 0.4rem;
+      transform: scale(0.9);
     }
     .pair-setup {
       margin-bottom: 1rem;
@@ -141,6 +156,7 @@
       padding: 0.5rem;
       color: #000;
       font-weight: bold;
+      font-size: 9px;
     }
 
     /* NFT SELECTION BOXES */
@@ -150,15 +166,15 @@
       margin-top: 0.5rem;
     }
     .nft-box {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: #fff;
       border: 3px solid var(--chili-red);
       color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      font-size: 9px;
       border-radius: 6px;
       font-weight: bold;
       cursor: pointer;
@@ -197,7 +213,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem;
+      padding: 0.5rem;
       margin-bottom: 1rem;
       border: 2px solid #fff;
       font-weight: bold;
@@ -206,6 +222,7 @@
       text-shadow: 1px 1px 2px #fff;
       background: var(--jonquil); 
       box-shadow: 0 0 10px #fff;
+      font-size: 10px;
     }
     .game-status.open {
       background: var(--kelly-green);
@@ -224,7 +241,7 @@
       100% { box-shadow: 0 0 15px #fff; }
     }
     .game-status button {
-      padding: 0.5rem 1rem;
+      padding: 0.3rem 0.6rem;
       border: 2px solid #000;
       cursor: pointer;
       background: #fff;
@@ -232,6 +249,7 @@
       border-radius: 4px;
       font-weight: bold;
       transition: 0.3s;
+      font-size: 9px;
     }
     .game-status button:hover {
       background: var(--jonquil);
@@ -244,7 +262,7 @@
     .charts-title {
       text-align: center;
       margin-top: 0;
-      font-size: 1.3rem;
+      font-size: 12px;
       margin-bottom: 1rem;
       color: #fff;
       text-shadow: 2px 2px 4px #000;
@@ -255,10 +273,10 @@
       display: flex;
       flex-wrap: nowrap;
       gap: 1rem;
-      overflow-x: auto; /* horizontal scroll if screen too narrow */
+      overflow-x: auto;
     }
     .chart-box {
-      flex: 0 0 300px;
+      flex: 0 0 220px;
       border: 3px solid #fff;
       background: rgba(0,0,0,0.3);
       text-align: center;
@@ -266,10 +284,11 @@
       border-radius: 6px;
       color: #fff;
       position: relative;
+      font-size: 10px;
     }
     .chart-box h3 {
-      margin: 0.5rem 0;
-      font-size: 1rem;
+      margin: 0.3rem 0;
+      font-size: 10px;
       text-shadow: 1px 1px 2px #000;
     }
 
@@ -307,6 +326,7 @@
       gap: 0.25rem;
       font-weight: bold;
       text-shadow: 1px 1px 2px #000;
+      font-size: 9px;
     }
     .bet-line {
       display: flex;
@@ -318,7 +338,7 @@
     }
     .creator-bet {
       background: var(--kelly-green);
-      color: #fff876; /* or whichever color you prefer for text on green */
+      color: #fff876;
     }
     .you-bet {
       background: var(--chili-red);
@@ -352,13 +372,13 @@
     }
     .bottom-section h2 {
       margin-top: 0;
-      font-size: 1.4rem;
+      font-size: 14px;
       color: var(--jonquil);
       margin-bottom: 0.5rem;
       text-shadow: 2px 2px 4px #000;
     }
     .bottom-section p {
-      font-size: 1rem;
+      font-size: 12px;
       color: #fff;
       margin: 0;
       text-shadow: 1px 1px 2px #000;
@@ -380,18 +400,20 @@
       background-color: #fff;
       color: #000;
       margin: 10% auto;
-      max-width: 500px;
+      max-width: 400px;
       border-radius: 8px;
-      padding: 2rem;
+      padding: 1rem;
       text-align: center;
       position: relative;
       box-shadow: 0 0 10px #000;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
     }
     .close-btn {
       position: absolute;
       top: 10px;
       right: 15px;
-      font-size: 1.2rem;
+      font-size: 12px;
       cursor: pointer;
       background: none;
       border: none;
@@ -402,8 +424,8 @@
       color: var(--chili-red);
     }
     #understandBtn {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
+      margin-top: 0.8rem;
+      padding: 0.3rem 0.8rem;
       border: 2px solid var(--chili-red);
       background: var(--kelly-green);
       color: #000;
@@ -421,7 +443,7 @@
 
     /* TIMER STYLES */
     .timer {
-      font-size: 1rem;
+      font-size: 10px;
       font-weight: bold;
       color: #000;
       background: #fff;
@@ -439,18 +461,19 @@
       <h2>⚡ Welcome to Liquidated ⚡</h2>
       <p>
         🪙 This is a <strong>3-match prediction game</strong> where you wager on whether 
-        certain crypto pairs will move 🔼 or 🔽. <br /><br />
+        certain crypto pairs will move 🔼 or 🔽.<br /><br />
         🏆 You can either <em>create a new game</em> or <em>join</em> an existing one.  
         Stake your NFT and if your predictions beat your opponent’s, you <strong>win</strong> 
-        their NFT! <br /><br />
+        their NFT!<br /><br />
         🚀 Once someone joins your created game, it will begin <strong>15 minutes</strong> later.  
         If nobody joins your game within <strong>45 minutes</strong>, the game closes.  
         <br /><br />
-        🏆 Watch the live charts and see if you’re winning or losing. At the end of the match, 
-        final results show who triumphs!
+        🏆 Watch the live charts and see if you’re winning or losing. At the end, final 
+        results show who triumphs!
       </p>
       <p>
-        🔑 Don’t forget to connect your wallet and confirm bets. May the best crypto gambler win! 
+        🔑 Don’t forget to connect your wallet and confirm bets. 
+        May the best crypto gambler win!
       </p>
       <button id="understandBtn">I Understand ✅</button>
     </div>
@@ -461,7 +484,7 @@
   <header>
     <div class="logo-wrapper">
       <img src="logo.png" alt="Your Logo" />
-      <h1></h1>
+      <h1>Liquidated</h1>
     </div>
     <nav>
       <a href="#">New</a>
@@ -539,11 +562,18 @@
         </div>
         <h2 class="charts-title">Game #1</h2>
 
-        <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
-          <h3>👤 Creator</h3>
-          <p>0xABC123 | NFT #1</p>
+        <div class="user-info-card" style="
+          border:2px solid #fff; 
+          padding:0.5rem; 
+          border-radius:6px; 
+          margin-bottom:1rem;
+          font-size:10px;
+        ">
+          <h3 style="margin:0; font-size:10px;">👤 Creator</h3>
+          <p style="margin:0; font-size:9px;">0xABC123 | NFT #1</p>
         </div>
 
+        <!-- CHARTS in Single Row -->
         <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
@@ -553,13 +583,14 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (🔼)</span>
+                Creator (🔼)
               </div>
               <div class="bet-line you-bet">
-                <span>You (🔽)</span>
+                You (🔽)
               </div>
             </div>
           </div>
+
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
@@ -568,13 +599,14 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (🔽)</span>
+                Creator (🔽)
               </div>
               <div class="bet-line you-bet">
-                <span>You (🔼)</span>
+                You (🔼)
               </div>
             </div>
           </div>
+
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
@@ -583,10 +615,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (🔼)</span>
+                Creator (🔼)
               </div>
               <div class="bet-line you-bet">
-                <span>You (🔽)</span>
+                You (🔽)
               </div>
             </div>
           </div>
@@ -601,9 +633,15 @@
         </div>
         <h2 class="charts-title">Game #2</h2>
 
-        <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
-          <h3>👤 Creator</h3>
-          <p>0xDEF999 | NFT #42</p>
+        <div class="user-info-card" style="
+          border:2px solid #fff; 
+          padding:0.5rem; 
+          border-radius:6px; 
+          margin-bottom:1rem;
+          font-size:10px;
+        ">
+          <h3 style="margin:0; font-size:10px;">👤 Creator</h3>
+          <p style="margin:0; font-size:9px;">0xDEF999 | NFT #42</p>
         </div>
 
         <div class="charts-wrapper">
@@ -614,15 +652,15 @@
               <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
             </div>
             <div class="bet-info">
-              <!-- PNL next to 🏆 / 💔 -->
               <div class="bet-line creator-bet winning">
-                <span>Creator (🔼) 🏆 (+5%)</span>
+                Creator (🔼) 🏆 (+5%)
               </div>
               <div class="bet-line you-bet losing">
-                <span>You (🔽) 💔 (–2%)</span>
+                You (🔽) 💔 (–2%)
               </div>
             </div>
           </div>
+
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
@@ -631,13 +669,14 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
-                <span>Creator (🔽) 💔 (–3%)</span>
+                Creator (🔽) 💔 (–3%)
               </div>
               <div class="bet-line you-bet winning">
-                <span>You (🔼) 🏆 (+1%)</span>
+                You (🔼) 🏆 (+1%)
               </div>
             </div>
           </div>
+
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
@@ -646,10 +685,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
-                <span>Creator (🔼) 💔 (–4%)</span>
+                Creator (🔼) 💔 (–4%)
               </div>
               <div class="bet-line you-bet winning">
-                <span>You (🔽) 🏆 (+8%)</span>
+                You (🔽) 🏆 (+8%)
               </div>
             </div>
           </div>
@@ -664,13 +703,19 @@
         </div>
         <h2 class="charts-title">Game #3 (Scheduled)</h2>
 
-        <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
-          <h3>👤 Creator</h3>
-          <p>0xXYZ999 | NFT #99</p>
+        <div class="user-info-card" style="
+          border:2px solid #fff; 
+          padding:0.5rem; 
+          border-radius:6px; 
+          margin-bottom:1rem;
+          font-size:10px;
+        ">
+          <h3 style="margin:0; font-size:10px;">👤 Creator</h3>
+          <p style="margin:0; font-size:9px;">0xXYZ999 | NFT #99</p>
         </div>
 
         <div class="charts-wrapper">
-          <!-- Chart 1, just placeholders for now -->
+          <!-- Chart 1 -->
           <div class="chart-box">
             <h3>Match 1</h3>
             <div class="dexscreener-embed">
@@ -678,10 +723,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (🔼)</span>
+                Creator (🔼)
               </div>
               <div class="bet-line you-bet">
-                <span>You (🔽)</span>
+                You (🔽)
               </div>
             </div>
           </div>
@@ -693,10 +738,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (🔽)</span>
+                Creator (🔽)
               </div>
               <div class="bet-line you-bet">
-                <span>You (🔼)</span>
+                You (🔼)
               </div>
             </div>
           </div>
@@ -708,10 +753,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (🔼)</span>
+                Creator (🔼)
               </div>
               <div class="bet-line you-bet">
-                <span>You (🔽)</span>
+                You (🔽)
               </div>
             </div>
           </div>
@@ -746,27 +791,26 @@
     // 2) COUNTDOWN LOGIC
     // =======================
     const countdownTimer = document.getElementById("countdownTimer");
-    let remainingSeconds = 15 * 60; // 15 min in seconds
+    let remainingSeconds = 15 * 60; // 15 minutes in seconds
 
     function updateTimer() {
       const minutes = Math.floor(remainingSeconds / 60);
       const seconds = remainingSeconds % 60;
-      // Format as mm:ss
-      countdownTimer.textContent = 
+      countdownTimer.textContent =
         String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
 
       if (remainingSeconds > 0) {
         remainingSeconds--;
       } else {
-        // Timer ended. You can change the status or start the game automatically, etc.
         countdownTimer.textContent = "00:00";
         clearInterval(timerInterval);
+        // Optionally trigger some "game start" logic here
       }
     }
 
     // Start the countdown
     const timerInterval = setInterval(updateTimer, 1000);
-    updateTimer(); // initial call to show 15:00 right away
+    updateTimer(); // Show 15:00 immediately on load
   </script>
 </body>
 </html>
