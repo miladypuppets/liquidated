@@ -241,17 +241,14 @@
       text-shadow: 2px 2px 4px #000;
     }
 
-    /* CRITICAL: Force a single row, horizontal scroll if needed */
     .charts-wrapper {
       display: flex;
-      flex-wrap: nowrap;   /* no wrapping */
+      flex-wrap: nowrap;
       gap: 1rem;
-      overflow-x: auto;    /* horizontal scroll if not enough space */
+      overflow-x: auto;
     }
-
-    /* Each chart has a fixed min-width to ensure it doesn't compress too small */
     .chart-box {
-      flex: 0 0 300px; /* each chart is at least 300px wide */
+      flex: 0 0 300px;
       border: 3px solid #fff;
       background: rgba(0,0,0,0.3);
       text-align: center;
@@ -259,10 +256,6 @@
       border-radius: 6px;
       color: #fff;
       position: relative;
-      /* Optional if you want to fix the height as well: 
-         height: 450px;
-         overflow: hidden;
-      */
     }
     .chart-box h3 {
       margin: 0.5rem 0;
@@ -313,14 +306,15 @@
     }
     .creator-bet {
       background: var(--kelly-green);
-      color: #000;
+      color: #fff876;
     }
     .you-bet {
       background: var(--chili-red);
       color: #fff;
     }
+    /* Replaced up/down: "🔼" and "🔽" */
     .arrow.up {
-      color: var(--jonquil);
+      color: var(--jonquil); /* or any color you want */
     }
     .arrow.down {
       color: var(--celestial-blue);
@@ -422,6 +416,7 @@
 </head>
 <body>
 
+
   <!-- MODAL POPUP -->
   <div id="infoModal" class="modal">
     <div class="modal-content">
@@ -447,6 +442,7 @@
   </div>
   <!-- END MODAL POPUP -->
 
+
   <!-- HEADER -->
   <header>
     <div class="logo-wrapper">
@@ -465,15 +461,15 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="section">
-        <h2>Player / Wallet</h2>
-        <label>Your Address:</label>
-        <div>0xABC123...</div>
+        <h2>Wallet</h2>
+        <label>Address:</label>
+        <div>0xABC123</div>
       </div>
 
       <div class="section">
-        <h2>⚔️ Create Game ⚔️</h2>
+        <h2>Create</h2>
         <div class="pair-setup">
-          <label>Match 1 - Pair Selection:</label>
+          <label>Match 1:</label>
           <select name="pair1">
             <option>SOL/BTC</option>
             <option>SOL/ETH</option>
@@ -481,11 +477,11 @@
             <option>BNB/ETH</option>
           </select>
           <label>Bet:</label>
-          <input type="radio" name="bet1" value="up">⬆️
-          <input type="radio" name="bet1" value="down">⬇️
+          <input type="radio" name="bet1" value="up">🔼
+          <input type="radio" name="bet1" value="down">🔽
         </div>
         <div class="pair-setup">
-          <label>Match 2 - Pair Selection:</label>
+          <label>Match 2:</label>
           <select name="pair2">
             <option>SOL/BTC</option>
             <option>SOL/ETH</option>
@@ -493,11 +489,11 @@
             <option>BNB/ETH</option>
           </select>
           <label>Bet:</label>
-          <input type="radio" name="bet2" value="up">⬆️
-          <input type="radio" name="bet2" value="down">⬇️
+          <input type="radio" name="bet2" value="up">🔼
+          <input type="radio" name="bet2" value="down">🔽
         </div>
         <div class="pair-setup">
-          <label>Match 3 - Pair Selection:</label>
+          <label>Match 3:</label>
           <select name="pair3">
             <option>SOL/BTC</option>
             <option>SOL/ETH</option>
@@ -505,18 +501,16 @@
             <option>BNB/ETH</option>
           </select>
           <label>Bet:</label>
-          <input type="radio" name="bet3" value="up">⬆️
-          <input type="radio" name="bet3" value="down">⬇️
+          <input type="radio" name="bet3" value="up">🔼
+          <input type="radio" name="bet3" value="down">🔽
         </div>
-        <label>Time Frames (auto):</label>
-        <div>2min, 5min, 10min</div>
       </div>
 
       <div class="section">
-        <h2>🎨 NFT at Risk</h2>
-        <label>Select Your NFT:</label>
+        <h2>My NFT</h2>
+        <label>Selected:</label>
         <div class="nfts">
-          <div class="nft-box">NFT #1</div>
+          <div class="nft-box">#1</div>
         </div>
       </div>
     </aside>
@@ -526,22 +520,21 @@
       <!-- GAME WRAPPER #1 -->
       <div class="game-wrapper">
         <div class="game-status open">
-          <p>🟢 OPEN</p>
-          <button>▶️ Start</button>
+          <p>🟢 Open</p>
+          <button>Start</button>
         </div>
-        <h2 class="charts-title">3-Match Game #1</h2>
+        <h2 class="charts-title">Game #1</h2>
 
         <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
-          <h3>👤 Creator Info</h3>
-          <p>Address: 0xABC123</p>
-          <p>NFT: #1</p>
+          <h3>👤 Creator</h3>
+          <p>0xABC123 | NFT #1</p>
         </div>
 
         <!-- CHARTS in Single Row -->
         <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
-            <h3>⚔️ Match 1 (SOL/ETH) (2min)</h3>
+            <h3>Match 1</h3>
             <div class="dexscreener-embed">
               <iframe
                 src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
@@ -549,17 +542,17 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (⬆️)</span>
+                <span>Creator (🔼)</span>
               </div>
               <div class="bet-line you-bet">
-                <span>You (⬇️)</span>
+                <span>You (🔽)</span>
               </div>
             </div>
           </div>
 
           <!-- Chart 2 -->
           <div class="chart-box">
-            <h3>⚔️ Match 2 (ETH/BTC) (5min)</h3>
+            <h3>Match 2</h3>
             <div class="dexscreener-embed">
               <iframe
                 src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
@@ -567,17 +560,17 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (⬇️)</span>
+                <span>Creator (🔽)</span>
               </div>
               <div class="bet-line you-bet">
-                <span>You (⬆️)</span>
+                <span>You (🔼)</span>
               </div>
             </div>
           </div>
 
           <!-- Chart 3 -->
           <div class="chart-box">
-            <h3>⚔️ Match 3 (BNB/ETH) (10min)</h3>
+            <h3>Match 3</h3>
             <div class="dexscreener-embed">
               <iframe
                 src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
@@ -585,10 +578,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
-                <span>Creator (⬆️)</span>
+                <span>Creator (🔼)</span>
               </div>
               <div class="bet-line you-bet">
-                <span>You (⬇️)</span>
+                <span>You (🔽)</span>
               </div>
             </div>
           </div>
@@ -598,22 +591,21 @@
       <!-- GAME WRAPPER #2 -->
       <div class="game-wrapper">
         <div class="game-status active">
-          <p>🔥 ACTIVE</p>
-          <button>▶️ Start</button>
+          <p>🔥 Active</p>
+          <button>Start</button>
         </div>
-        <h2 class="charts-title">3-Match Game #2</h2>
+        <h2 class="charts-title">Game #2</h2>
 
         <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
-          <h3>👤 Creator Info</h3>
-          <p>Address: 0xDEF999</p>
-          <p>NFT: #42</p>
+          <h3>👤 Creator</h3>
+          <p>0xDEF999 | NFT #42</p>
         </div>
 
         <!-- CHARTS in Single Row -->
         <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
-            <h3>⚔️ Match 1 (SOL/BTC) (2min left)</h3>
+            <h3>Match 1</h3>
             <div class="dexscreener-embed">
               <iframe
                 src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
@@ -621,17 +613,17 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet winning">
-                <span>Creator (⬆️) 🏆</span>
+                <span>Creator (🔼) 🏆</span>
               </div>
               <div class="bet-line you-bet losing">
-                <span>You (⬇️) 💔</span>
+                <span>You (🔽) 💔</span>
               </div>
             </div>
           </div>
 
           <!-- Chart 2 -->
           <div class="chart-box">
-            <h3>⚔️ Match 2 (SOL/ETH) (5min left)</h3>
+            <h3>Match 2</h3>
             <div class="dexscreener-embed">
               <iframe
                 src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
@@ -639,17 +631,17 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
-                <span>Creator (⬇️) 💔</span>
+                <span>Creator (🔽) 💔</span>
               </div>
               <div class="bet-line you-bet winning">
-                <span>You (⬆️) 🏆</span>
+                <span>You (🔼) 🏆</span>
               </div>
             </div>
           </div>
 
           <!-- Chart 3 -->
           <div class="chart-box">
-            <h3>⚔️ Match 3 (ETH/BTC) (10min left)</h3>
+            <h3>Match 3</h3>
             <div class="dexscreener-embed">
               <iframe
                 src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
@@ -657,10 +649,10 @@
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
-                <span>Creator (⬆️) 💔</span>
+                <span>Creator (🔼) 💔</span>
               </div>
               <div class="bet-line you-bet winning">
-                <span>You (⬇️) 🏆</span>
+                <span>You (🔽) 🏆</span>
               </div>
             </div>
           </div>
@@ -671,8 +663,8 @@
   </div>
 
   <div class="bottom-section">
-    <h2>📝 Match Log / Final Results</h2>
-    <p>📡 Watch real-time or final outcome appear here.</p>
+    <h2>Results</h2>
+    <p>Watch final outcomes here.</p>
   </div>
 
   <!-- JAVASCRIPT FOR MODAL -->
@@ -681,7 +673,6 @@
     const closeModalX = document.getElementById("closeModalX");
     const understandBtn = document.getElementById("understandBtn");
 
-    // Click [X] or [I Understand] => close the modal
     closeModalX.addEventListener("click", () => {
       infoModal.style.display = "none";
     });
