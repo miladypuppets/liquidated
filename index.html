@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Liquidated - Retro + Full Info</title>
+  <title>Liquidated - Retro + Local Chart Images</title>
 
   <!-- Retro-ish Font (Press Start 2P) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -292,30 +292,20 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* DEXSCREENER EMBED */
-    .dexscreener-embed {
-      position: relative;
+    /* CHART IMAGE (instead of DexScreener) */
+    .chart-image {
       width: 100%;
-      padding-bottom: 125%;
       border: 2px dashed #fff;
       border-radius: 4px;
       margin-bottom: 0.5rem;
       box-shadow: inset 0 0 4px #fff;
       background: var(--black);
+      overflow: hidden; /* so if image is bigger, corners are clipped */
     }
-    @media (min-width: 1400px) {
-      .dexscreener-embed {
-        padding-bottom: 65%;
-      }
-    }
-    .dexscreener-embed iframe {
-      position: absolute;
+    .chart-image img {
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      border: 0;
-      border-radius: 2px;
+      height: auto;
+      display: block;
     }
 
     /* BET INFO + PNL */
@@ -578,48 +568,37 @@
           <!-- Chart 1 -->
           <div class="chart-box">
             <h3>Match 1</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            <!-- Instead of DexScreener <iframe>, we show a local image "chartex.png" -->
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
-              <div class="bet-line creator-bet">
-                Creator (🔼)
-              </div>
-              <div class="bet-line you-bet">
-                You (🔽)
-              </div>
+              <div class="bet-line creator-bet">Creator (🔼)</div>
+              <div class="bet-line you-bet">You (🔽)</div>
             </div>
           </div>
 
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
-              <div class="bet-line creator-bet">
-                Creator (🔽)
-              </div>
-              <div class="bet-line you-bet">
-                You (🔼)
-              </div>
+              <div class="bet-line creator-bet">Creator (🔽)</div>
+              <div class="bet-line you-bet">You (🔼)</div>
             </div>
           </div>
 
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
-              <div class="bet-line creator-bet">
-                Creator (🔼)
-              </div>
-              <div class="bet-line you-bet">
-                You (🔽)
-              </div>
+              <div class="bet-line creator-bet">Creator (🔼)</div>
+              <div class="bet-line you-bet">You (🔽)</div>
             </div>
           </div>
         </div>
@@ -648,8 +627,8 @@
           <!-- Chart 1 -->
           <div class="chart-box">
             <h3>Match 1</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet winning">
@@ -664,8 +643,8 @@
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
@@ -680,8 +659,8 @@
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
@@ -715,11 +694,11 @@
         </div>
 
         <div class="charts-wrapper">
-          <!-- Chart 1 -->
+          <!-- Chart 1, now just an example image "chartex.png" -->
           <div class="chart-box">
             <h3>Match 1</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
@@ -730,11 +709,12 @@
               </div>
             </div>
           </div>
+
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
@@ -745,11 +725,12 @@
               </div>
             </div>
           </div>
+
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
-            <div class="dexscreener-embed">
-              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            <div class="chart-image">
+              <img src="chartex.png" alt="Chart Example" />
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
