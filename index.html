@@ -33,6 +33,7 @@
       color: #fff;
     }
 
+    /* HEADER */
     header {
       background: linear-gradient(90deg, var(--chili-red), var(--celestial-blue));
       border-bottom: 4px solid var(--kelly-green);
@@ -64,6 +65,7 @@
       color: #fff;
     }
 
+    /* NAV */
     nav {
       margin-top: 1rem;
       display: flex;
@@ -89,6 +91,7 @@
       border-color: #fff;
     }
 
+    /* CONTAINER LAYOUT */
     .container {
       display: flex;
       flex-direction: row;
@@ -96,6 +99,7 @@
       gap: 1rem;
     }
 
+    /* SIDEBAR */
     .sidebar {
       flex: 1;
       min-width: 250px;
@@ -139,6 +143,7 @@
       font-weight: bold;
     }
 
+    /* NFT SELECTION BOXES */
     .nfts {
       display: flex;
       gap: 0.5rem;
@@ -166,6 +171,7 @@
       border-color: #fff;
     }
 
+    /* MAIN CONTENT */
     .main-content {
       flex: 3;
       background: linear-gradient(135deg, var(--celestial-blue), var(--chili-red));
@@ -177,6 +183,7 @@
       overflow: hidden;
     }
 
+    /* GAME WRAPPER STYLES */
     .game-wrapper {
       border: 3px dashed #fff;
       margin-bottom: 2rem;
@@ -185,6 +192,7 @@
       border-radius: 6px;
     }
 
+    /* GAME STATUS BARS */
     .game-status {
       display: flex;
       justify-content: space-between;
@@ -232,6 +240,7 @@
       transform: scale(1.1);
     }
 
+    /* CHART TITLES */
     .charts-title {
       text-align: center;
       margin-top: 0;
@@ -241,11 +250,12 @@
       text-shadow: 2px 2px 4px #000;
     }
 
+    /* CHART WRAPPER (3 side-by-side) */
     .charts-wrapper {
       display: flex;
       flex-wrap: nowrap;
       gap: 1rem;
-      overflow-x: auto;
+      overflow-x: auto; /* horizontal scroll if screen too narrow */
     }
     .chart-box {
       flex: 0 0 300px;
@@ -263,6 +273,7 @@
       text-shadow: 1px 1px 2px #000;
     }
 
+    /* DEXSCREENER EMBED */
     .dexscreener-embed {
       position: relative;
       width: 100%;
@@ -288,6 +299,7 @@
       border-radius: 2px;
     }
 
+    /* BET INFO + PNL */
     .bet-info {
       margin-top: 0.5rem;
       display: flex;
@@ -306,18 +318,11 @@
     }
     .creator-bet {
       background: var(--kelly-green);
-      color: #fff876;
+      color: #fff876; /* or whichever color you prefer for text on green */
     }
     .you-bet {
       background: var(--chili-red);
       color: #fff;
-    }
-    /* Replaced up/down: "🔼" and "🔽" */
-    .arrow.up {
-      color: var(--jonquil); /* or any color you want */
-    }
-    .arrow.down {
-      color: var(--celestial-blue);
     }
 
     .winning {
@@ -335,6 +340,7 @@
       100% { box-shadow: 0 0 15px #f00; }
     }
 
+    /* BOTTOM SECTION */
     .bottom-section {
       background: var(--celestial-blue);
       border-top: 5px double var(--chili-red);
@@ -412,10 +418,19 @@
       color: var(--celestial-blue);
       transform: scale(1.05);
     }
+
+    /* TIMER STYLES */
+    .timer {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #000;
+      background: #fff;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
-
 
   <!-- MODAL POPUP -->
   <div id="infoModal" class="modal">
@@ -424,24 +439,23 @@
       <h2>⚡ Welcome to Liquidated ⚡</h2>
       <p>
         🪙 This is a <strong>3-match prediction game</strong> where you wager on whether 
-        certain crypto pairs will move ⬆️ or ⬇️. <br /><br />
-        🏆 You can either <em>create a new game</em> or <em>join an existing one</em>. 
+        certain crypto pairs will move 🔼 or 🔽. <br /><br />
+        🏆 You can either <em>create a new game</em> or <em>join</em> an existing one.  
         Stake your NFT and if your predictions beat your opponent’s, you <strong>win</strong> 
         their NFT! <br /><br />
-        🚀 Watch the live charts update in real-time, and see if you’re 
-        <span style="color:green;">winning 🏆</span> or 
-        <span style="color:red;">losing 💔</span>. At the end of the match, final 
-        results will show who has triumphed!
+        🚀 Once someone joins your created game, it will begin <strong>15 minutes</strong> later.  
+        If nobody joins your game within <strong>45 minutes</strong>, the game closes.  
+        <br /><br />
+        🏆 Watch the live charts and see if you’re winning or losing. At the end of the match, 
+        final results show who triumphs!
       </p>
       <p>
-        🔑 Don’t forget to connect your wallet and confirm your bets. 
-        May the best crypto gambler win! 
+        🔑 Don’t forget to connect your wallet and confirm bets. May the best crypto gambler win! 
       </p>
       <button id="understandBtn">I Understand ✅</button>
     </div>
   </div>
   <!-- END MODAL POPUP -->
-
 
   <!-- HEADER -->
   <header>
@@ -530,15 +544,12 @@
           <p>0xABC123 | NFT #1</p>
         </div>
 
-        <!-- CHARTS in Single Row -->
         <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
             <h3>Match 1</h3>
             <div class="dexscreener-embed">
-              <iframe
-                src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
-              ></iframe>
+              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
@@ -549,14 +560,11 @@
               </div>
             </div>
           </div>
-
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
             <div class="dexscreener-embed">
-              <iframe
-                src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
-              ></iframe>
+              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
@@ -567,14 +575,11 @@
               </div>
             </div>
           </div>
-
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
             <div class="dexscreener-embed">
-              <iframe
-                src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
-              ></iframe>
+              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet">
@@ -588,7 +593,7 @@
         </div>
       </div>
 
-      <!-- GAME WRAPPER #2 -->
+      <!-- GAME WRAPPER #2 (Active) -->
       <div class="game-wrapper">
         <div class="game-status active">
           <p>🔥 Active</p>
@@ -601,58 +606,112 @@
           <p>0xDEF999 | NFT #42</p>
         </div>
 
-        <!-- CHARTS in Single Row -->
         <div class="charts-wrapper">
           <!-- Chart 1 -->
           <div class="chart-box">
             <h3>Match 1</h3>
             <div class="dexscreener-embed">
-              <iframe
-                src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
-              ></iframe>
+              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
             </div>
             <div class="bet-info">
+              <!-- PNL next to 🏆 / 💔 -->
               <div class="bet-line creator-bet winning">
-                <span>Creator (🔼) 🏆</span>
+                <span>Creator (🔼) 🏆 (+5%)</span>
               </div>
               <div class="bet-line you-bet losing">
-                <span>You (🔽) 💔</span>
+                <span>You (🔽) 💔 (–2%)</span>
               </div>
             </div>
           </div>
-
           <!-- Chart 2 -->
           <div class="chart-box">
             <h3>Match 2</h3>
             <div class="dexscreener-embed">
-              <iframe
-                src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"
-              ></iframe>
+              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
-                <span>Creator (🔽) 💔</span>
+                <span>Creator (🔽) 💔 (–3%)</span>
               </div>
               <div class="bet-line you-bet winning">
-                <span>You (🔼) 🏆</span>
+                <span>You (🔼) 🏆 (+1%)</span>
               </div>
             </div>
           </div>
-
           <!-- Chart 3 -->
           <div class="chart-box">
             <h3>Match 3</h3>
             <div class="dexscreener-embed">
-              <iframe
-                src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"
-              ></iframe>
+              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
             </div>
             <div class="bet-info">
               <div class="bet-line creator-bet losing">
-                <span>Creator (🔼) 💔</span>
+                <span>Creator (🔼) 💔 (–4%)</span>
               </div>
               <div class="bet-line you-bet winning">
-                <span>You (🔽) 🏆</span>
+                <span>You (🔽) 🏆 (+8%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME WRAPPER #3 (Countdown) -->
+      <div class="game-wrapper">
+        <div class="game-status open">
+          <p>⏳ About to Begin in <span class="timer" id="countdownTimer">15:00</span></p>
+          <button disabled>Waiting...</button>
+        </div>
+        <h2 class="charts-title">Game #3 (Scheduled)</h2>
+
+        <div class="user-info-card" style="border:2px solid #fff; padding:0.5rem; border-radius:6px; margin-bottom:1rem;">
+          <h3>👤 Creator</h3>
+          <p>0xXYZ999 | NFT #99</p>
+        </div>
+
+        <div class="charts-wrapper">
+          <!-- Chart 1, just placeholders for now -->
+          <div class="chart-box">
+            <h3>Match 1</h3>
+            <div class="dexscreener-embed">
+              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet">
+                <span>Creator (🔼)</span>
+              </div>
+              <div class="bet-line you-bet">
+                <span>You (🔽)</span>
+              </div>
+            </div>
+          </div>
+          <!-- Chart 2 -->
+          <div class="chart-box">
+            <h3>Match 2</h3>
+            <div class="dexscreener-embed">
+              <iframe src="https://dexscreener.com/solana/3QuYz5hP7ycRP8Hf6xyNBNB3kbE5SEtGjRCA3fsZ53W8?embed=1"></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet">
+                <span>Creator (🔽)</span>
+              </div>
+              <div class="bet-line you-bet">
+                <span>You (🔼)</span>
+              </div>
+            </div>
+          </div>
+          <!-- Chart 3 -->
+          <div class="chart-box">
+            <h3>Match 3</h3>
+            <div class="dexscreener-embed">
+              <iframe src="https://dexscreener.com/solana/2VuFi4aHHm7dQ7Cekiewj4gKb1rRgRvJCZbPquY3EAD6?embed=1"></iframe>
+            </div>
+            <div class="bet-info">
+              <div class="bet-line creator-bet">
+                <span>Creator (🔼)</span>
+              </div>
+              <div class="bet-line you-bet">
+                <span>You (🔽)</span>
               </div>
             </div>
           </div>
@@ -667,8 +726,11 @@
     <p>Watch final outcomes here.</p>
   </div>
 
-  <!-- JAVASCRIPT FOR MODAL -->
+  <!-- JAVASCRIPT FOR MODAL & COUNTDOWN -->
   <script>
+    // =======================
+    // 1) MODAL LOGIC
+    // =======================
     const infoModal = document.getElementById("infoModal");
     const closeModalX = document.getElementById("closeModalX");
     const understandBtn = document.getElementById("understandBtn");
@@ -679,6 +741,32 @@
     understandBtn.addEventListener("click", () => {
       infoModal.style.display = "none";
     });
+
+    // =======================
+    // 2) COUNTDOWN LOGIC
+    // =======================
+    const countdownTimer = document.getElementById("countdownTimer");
+    let remainingSeconds = 15 * 60; // 15 min in seconds
+
+    function updateTimer() {
+      const minutes = Math.floor(remainingSeconds / 60);
+      const seconds = remainingSeconds % 60;
+      // Format as mm:ss
+      countdownTimer.textContent = 
+        String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+
+      if (remainingSeconds > 0) {
+        remainingSeconds--;
+      } else {
+        // Timer ended. You can change the status or start the game automatically, etc.
+        countdownTimer.textContent = "00:00";
+        clearInterval(timerInterval);
+      }
+    }
+
+    // Start the countdown
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer(); // initial call to show 15:00 right away
   </script>
 </body>
 </html>
