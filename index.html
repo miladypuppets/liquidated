@@ -291,12 +291,24 @@ nav a:hover {
 .modal-content {
   background-color: #fff;
   color: #000;
-  margin: 10% auto;
+  margin: 5% auto; /* Adjust margin for small devices */
+  width: 90%; /* Use most of the screen width */
   max-width: 400px;
+  height: auto; /* Allow height to adjust dynamically */
   border-radius: 8px;
-  padding: 0.8rem; /* Reduced padding */
+  padding: 1rem; /* Increase padding for better readability */
   text-align: center;
-  font-size: 10px; /* Adjusted font size */
+  font-size: 12px; /* Slightly larger font size for better readability */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    margin: 0; /* Remove margins for fullscreen effect */
+    width: 100%; /* Take the full width */
+    height: 100%; /* Take the full height */
+    border-radius: 0; /* Remove border-radius for fullscreen effect */
+  }
 }
 
   </style>
