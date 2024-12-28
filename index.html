@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Card</title>
+    <style>
+        @font-face {
+            font-family: "PixelFont";
+            src: url("https://fonts.cdnfonts.com/s/23614/PressStart2P-Regular.woff") format("woff");
+        }
+
+        body {
+            font-family: "PixelFont", "Courier New", Courier, monospace;
+            background-color: #d9e8fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .game-card {
+            background-color: #f3f3f3;
+            border: 3px solid #333;
+            border-radius: 10px;
+            width: 600px;
+            padding: 15px;
+            box-shadow: 6px 6px 0 #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .header .timer {
+            font-size: 16px;
+            color: #dc3545;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .creator-address {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        .picks-container {
+            background-color: #dcdcdc;
+            border: 3px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 4px 4px 0 #aaa;
+        }
+
+        .picks-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .bet-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bet {
+            text-align: center;
+            width: 30%;
+            border: 3px solid #333;
+            border-radius: 5px;
+            padding: 8px;
+            background-color: white;
+            box-shadow: 2px 2px 0 #555;
+        }
+
+        .bet .pair {
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .bet .direction {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .direction-up {
+            color: white;
+            background-color: green;
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+
+        .direction-down {
+            color: white;
+            background-color: red;
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+
+        .separator {
+            border-top: 3px dashed #333;
+            margin: 15px 0;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .chart {
+            text-align: center;
+            width: 30%;
+            background-color: #ffffff;
+            border: 3px solid #333;
+            border-radius: 5px;
+            padding: 8px;
+            box-shadow: 2px 2px 0 #555;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .chart img {
+            max-width: 100%;
+            max-height: 80px;
+            margin-bottom: 5px;
+        }
+
+        .chart .timeframe {
+            font-size: 12px;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+
+        .percentage {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border: 2px solid;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .percentage-up {
+            border-color: green;
+            color: black;
+            background-color: #d4fcd4;
+        }
+
+        .percentage-down {
+            border-color: red;
+            color: black;
+            background-color: #fcd4d4;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result img {
+            max-width: 120px;
+            height: auto;
+            box-shadow: 2px 2px 0 #555;
+        }
+
+        .result .description {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .result .or {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-card">
+        <div class="header">
+            <h1>Open Game</h1>
+            <div class="timer">Time Remaining: 02:34</div>
+        </div>
+        <div class="creator-address">
+            Creator: 0xABC123
+        </div>
+        <div class="picks-container">
+            <div class="picks-title">
+                Picks
+            </div>
+            <div class="bet-section">
+                <div class="bet">
+                    <div class="pair">BTC/USD</div>
+                    <div class="direction direction-up">↑</div>
+                </div>
+                <div class="bet">
+                    <div class="pair">SOL/USD</div>
+                    <div class="direction direction-down">↓</div>
+                </div>
+                <div class="bet">
+                    <div class="pair">AVAX/USD</div>
+                    <div class="direction direction-down">↓</div>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="charts">
+            <div class="chart">
+                <div class="chart-title">BTC/USD</div>
+                <img src="chart.png" alt="BTC/USD Chart">
+                <div class="percentage percentage-up">+4%</div>
+                <div class="timeframe">5m</div>
+            </div>
+            <div class="chart">
+                <div class="chart-title">SOL/USD</div>
+                <img src="chart.png" alt="SOL/USD Chart">
+                <div class="percentage percentage-down">-5%</div>
+                <div class="timeframe">5m</div>
+            </div>
+            <div class="chart">
+                <div class="chart-title">AVAX/USD</div>
+                <img src="chart.png" alt="AVAX/USD Chart">
+                <div class="percentage percentage-up">+2%</div>
+                <div class="timeframe">5m</div>
+            </div>
+        </div>
+        <div class="result">
+            <div class="result-item">
+                <img src="burnt.png" alt="Burnt Image">
+                <div class="description">(Lose)</div>
+            </div>
+            <div class="or">OR</div>
+            <div class="result-item">
+                <img src="win.png" alt="Win Image">
+                <div class="description">(Win)</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
